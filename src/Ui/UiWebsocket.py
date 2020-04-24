@@ -323,6 +323,10 @@ class UiWebsocket(object):
     def formatAnnouncerInfo(self, site):
         return {"address": site.address, "stats": site.announcer.stats}
 
+    # Resolve path to site and inner path
+    def resolvePath(self, path):
+        return self.site, path
+
     # - Actions -
 
     def actionAs(self, to, address, cmd, params=[]):

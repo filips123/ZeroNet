@@ -89,6 +89,14 @@ class UiWebsocketPlugin(object):
         RateLimit.called(self.site.address + "-MergerSiteAdd")
         site_manager.updateMergerSites()
 
+    # Resolve path to site and inner path
+    def resolvePath(self, path):
+        if not inner_path.startswith("merged-"):
+            return super(UiWebsocketPlugin, self).resolvePath(path)
+
+        merged_address, merged_inner_path = checkMergerPath(self.site.address, path)
+        return self.server.sites.get(merged_address), merged_inner_path
+
     # Delete a merged site
     @flag.no_multiuser
     def actionMergerSiteDelete(self, to, address):
