@@ -91,7 +91,7 @@ class UiWebsocketPlugin(object):
 
     # Resolve path to site and inner path
     def resolvePath(self, path):
-        if not inner_path.startswith("merged-"):
+        if not path.startswith("merged-"):
             return super(UiWebsocketPlugin, self).resolvePath(path)
 
         merged_address, merged_inner_path = checkMergerPath(self.site.address, path)
